@@ -32,11 +32,13 @@ public class EditDistance {
 
         //initial condition
         //assuming word2 is an empty string
+        //Make sure is <= not just <
         for(int i=0; i<=l1; i++) {
             dp[i][0] = i;
         }
 
         //assuming word1 is an empty string
+        //Make sure is <= not just <
         for(int j=1; j<=l2; j++) {
             dp[0][j] = j;
         }

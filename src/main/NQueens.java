@@ -29,35 +29,52 @@ import java.util.List;
 
  */
 public class NQueens {
-    ArrayList<String> results = new ArrayList<String>();
+    List<String[]> results = new ArrayList<String []>();
     public List<String[]> solveNQueens(int n) {
-
-
-
+        //The array A[i], i is ith row,
+        //A[i] contains the column
+        int[] A = new int[n];
+        checkMove(A,0);
+        return results;
     }
 
     public void checkMove(int[] A, int m) {
-        if(m == A.length-1) {
+        //Note not A.length - 1
+        //we don't really check the move
+        //A.length, but just use as to capture
+        //the results
+        if(m == A.length) {
             String[] result = new String[A.length];
             for(int i=0; i<A.length;i++){
-                StringBuilder sb = new StringBuilder("........");
+                StringBuilder sb = new StringBuilder();
+                //Fill the string with . first
+                for(int j=0; j<A.length;j++)
+                    sb.append('.');
+
+                //then set the Q
                 sb.setCharAt(A[i],'Q');
                 result[i] = sb.toString();
             }
             results.add(result);
         } else {
-            //try all possible move
+            //try all possible move,
+            //if valid, try next move,
+            //if not keep trying
             for(int i=0; i<A.length; i++) {
                 A[m] = i;
                 if(isValid(A,m))
                     checkMove(A,m+1);
             }
         }
-     }
+    }
 
     public boolean isValid(int[] A,int m) {
+        //compare m with all previous placement
         for(int i=0; i<m; i++) {
-            if(A[i] == A[m] || (Math.abs(A[i]-A[m])) == m-i))
+            //False when it occupies the same column for different row
+            //or when the diff between the row is the same as the diff
+            //between the column, i.e. diagonal to each other
+            if((A[i] == A[m]) || (Math.abs(A[i]-A[m]) == m-i))
                 return false;
         }
         return true;

@@ -33,17 +33,25 @@ public class MergedIntervals {
         result.add(prev);
         return result;
     }
+    private class Interval {
+        int start;
+        int end;
+        Interval() { start = 0; end = 0; }
+        Interval(int s, int e) { start = s; end = e; }
+    }
 
 }
-class MyComparator implements Comparator<Interval> {
+class MyComparator implements Comparator {
     public int compare(Interval i1, Interval i2) {
         return i1.start - i2.start;
     }
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        Interval i1 = (Interval) o1;
+        Interval i2 = (Interval) o2;
+        return i1.start - i2.start;
+    }
 }
-class Interval {
-    int start;
-    int end;
-    Interval() { start = 0; end = 0; }
-    Interval(int s, int e) { start = s; end = e; }
-}
+
 

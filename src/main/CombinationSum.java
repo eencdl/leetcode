@@ -32,16 +32,21 @@ public class CombinationSum {
     public void calSum(List<Integer> tmpList, int[] candidates, int index, int remain) {
         //base condition, since the value is sorted
         //as soon as negative we stop, and no solution
-        if(remain < 0 || index >= candidates.length)
-            return;
+
 
         //we got the answer
         if(remain == 0) {
             result.add(tmpList);
+            return;
         }
+
+        if(remain < 0 || index >= candidates.length)
+            return;
 
         //we try them all
         for(int i=index;i<candidates.length;i++) {
+            if(i > 0 && candidates[i] == candidates[i-1])
+                continue;
             List<Integer> tmp = new ArrayList<Integer>(tmpList);
             tmp.add(candidates[i]);
             calSum(tmp,candidates,i,remain-candidates[i]);

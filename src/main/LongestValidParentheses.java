@@ -10,29 +10,7 @@ import java.util.Stack;
  Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
  */
 public class LongestValidParentheses {
-<<<<<<< HEAD
-    public int longestValidParentheses(String s) {
-        int maxlen = 0;
-        int open = 0;
-        int sIndex = 0;
-        Stack<Integer> stk = new Stack<Integer>();
 
-
-
-        for(int i=0; i<s.length(); i++) {
-            if(s.charAt(i) == '(') {
-                if(open == 0) {
-                    sIndex = i;
-                }
-                open++;
-            } else if (s.charAt(i) == ')') {
-               if(open > 0) {
-                   open--;
-                   maxlen = Math.max(maxlen,i-sIndex);
-               } else {
-                   sIndex = i+1;
-               }
-=======
     //Need to use stack, think of a few scenarios
     // ()()  4
     // (()() 4
@@ -48,6 +26,7 @@ public class LongestValidParentheses {
             return 0;
         int maxlen = 0;
         Stack<Integer> stk = new Stack<Integer>();
+        int firstValid = 0;
         for(int i=0; i < s.length(); i++) {
             if(s.charAt(i) == '(') {
                 stk.push(i);
@@ -74,8 +53,7 @@ public class LongestValidParentheses {
                         maxlen = Math.max(maxlen, i - firstValid + 1);
                     }
                 }
->>>>>>> 182128987feb4f45db2f173b17da33d1b8a911e7
-            }
+           }
         }
         return maxlen;
     }

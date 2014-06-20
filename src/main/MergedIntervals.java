@@ -1,5 +1,7 @@
 package main;
 
+import main.util.Interval;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,13 +35,6 @@ public class MergedIntervals {
         result.add(prev);
         return result;
     }
-    private class Interval {
-        int start;
-        int end;
-        Interval() { start = 0; end = 0; }
-        Interval(int s, int e) { start = s; end = e; }
-    }
-
 }
 class MyComparator implements Comparator {
     public int compare(Interval i1, Interval i2) {

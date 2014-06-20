@@ -1,5 +1,7 @@
 package main;
 
+import main.util.ListNode;
+
 /**
  Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
@@ -29,8 +31,7 @@ public class ReverseNodesInKGroup {
      * 0->3->2->1->4->5->6
      *          |  |
      *          pre next
-     * @param pre
-     * @param next
+     *
      * @return the reversed list's last node, which is the precedence of parameter next
      */
     public ListNode reverseKGroup(ListNode head, int k) {
@@ -46,33 +47,31 @@ public class ReverseNodesInKGroup {
             i++;
 
             if(i%k == 0) {
+                //pre is just 1 node before the k group of elements needed to swap
+                //basically create a gap between pre and head, i.e. head - pre = k+1
+                //then do the reverse
                 pre = reverse(pre,head.next); //get back the head, assign to pre
                 head = pre.next;
             } else {
                 head = head.next;
             }
         }
-        return dummy.next;
+        return dummy.next; //dummy.next is the real head
     }
 
     public ListNode reverse(ListNode pre, ListNode next) {
         ListNode p1 = pre.next;
         ListNode p2 = p1.next;
+
+        //basically flipping p2 to the left most
         while(p2 != next) {
-            pre = p2.next;
-            p2.next = p1;
-            p1 = p2;
-            p2 = pre;
+            p1.next = p2.next; //skipping p2 to detach p2
+            p2.next = pre.next;
+            pre.next = p2;
+            p2 = p1.next;
         }
         return p1;
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
+

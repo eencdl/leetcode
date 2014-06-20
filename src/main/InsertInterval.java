@@ -1,6 +1,7 @@
 package main;
 
 
+import main.util.Interval;
 
 import java.util.List;
 
@@ -50,10 +51,4 @@ public class InsertInterval {
         intervals.add(i, newInterval);
         return intervals;
     }
-}
-class Interval {
-    int start;
-    int end;
-    Interval() { start = 0; end = 0; }
-    Interval(int s, int e) { start = s; end = e; }
 }

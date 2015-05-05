@@ -1,4 +1,7 @@
 __author__ = 'don'
+"""
+Reverse linked list
+"""
 class Solution:
     # @param {ListNode} head
     # @return {ListNode}

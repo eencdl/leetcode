@@ -33,6 +33,7 @@ class Solution:
                     prev.next = p.next
                     p.next = None
                     p = prev.next
-            prev = p
-            p = p.next
-        return head            
+            else:
+                prev = p
+                p = p.next
+        return head

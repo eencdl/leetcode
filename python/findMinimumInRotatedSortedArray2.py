@@ -16,6 +16,21 @@ The array may contain duplicates.
 class Solution:
     # @param {integer[]} nums
     # @return {integer}
+    # use 1,2,3,4,5 to see what condition to binary search
+    # remove half every time
+    # 1,2,2,2,5
+    # 5,1,2,2,2
+    # 2,5,1,2,2
+    # 2,2,5,1,2
+    # 2,2,2,5,1
+    # You can see always keep the right half (inclusive) 
+    # if mid is greater or equal to left, and greater than right
+    # SPECIAL CASE we had to explore both branch, when all left, mid, right has the same values
+    # 1,2,2,2,2
+    # 2,1,2,2,2 (undecided)
+    # 2,2,1,2,2
+    # 2,2,2,1,2 (undecided)
+    # 2,2,2,2,1
     def findMin(self, nums):
         return self.helper(nums, 0, len(nums)-1)
 

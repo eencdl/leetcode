@@ -42,10 +42,13 @@ class Solution:
 
         if nums[mid] < nums[mid+1] and nums[mid] < nums[mid-1]:
             return nums[mid]
+        elif nums[mid]== nums[s] and nums[mid] == nums[e]:
+            #undecided
+            return min(self.helper(nums, mid, e), self.helper(nums, s, mid))
         elif nums[mid] > nums[e]:
             return self.helper(nums, mid+1, e)
         else:
-            return self.helper(nums, s, mid-1)
+            return self.helper(nums, s, mid)
 
 
 

@@ -13,18 +13,16 @@ class Solution:
     # @return {void} Do not return anything, modify nums in-place instead.
     def sortColors(self, nums):
         f, m, e = 0, 0, len(nums)-1
-        while m < e:
-            if nums[f] == 0:
-                f += 1
-
-            if nums[m] == 1:
-                m += 1
-            elif nums[m] == 2:
-                nums[m] = nums[e]
-                nums[e] = 2
-            else:
+        while m <= e:
+            if nums[m] < 1:
                 nums[m] = nums[f]
                 nums[f] = 0
-
-            if nums[e] == 2:
+                f += 1
+                m += 1
+            elif nums[m] > 1:
+                nums[m] = nums[e]
+                nums[e] = 2
                 e -= 1
+            else:
+                m += 1
+

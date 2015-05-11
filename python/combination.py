@@ -22,19 +22,18 @@ class Solution:
         self.result = []
 
     def combine(self, n, k):
-        self.helper(n,k,0,[])
+        self.helper(n, k, 1, [])
         return self.result
-
-
-
 
     def helper(self, n, k, s, r):
         if len(r) == k:
-            nl = r[:]
-            self.result.append(nl)
+            self.result.append(r)
             return
 
-        for i in range(s, n):
-            self.helper(n, k, s+1, r+i)
+        for i in range(s, n+1):
+            self.helper(n, k, i+1, r +[i])
+
+if __name__ == '__main__':
+    print Solution().combine(4, 2)
 
 

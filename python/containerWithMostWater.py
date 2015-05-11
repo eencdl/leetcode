@@ -10,3 +10,15 @@ class Solution:
     # @param {integer[]} height
     # @return {integer}
     def maxArea(self, height):
+        lf, rg, maxV = 0, len(height)-1, 0
+        while lf < rg:
+            maxV = max(maxV, min(height[lf], height[rg])*(rg-lf))
+            if height[lf] <= height[rg]:
+                lf += 1
+            else:
+                rg -= 1
+        return maxV
+
+
+if __name__ == '__main__':
+    print Solution().maxArea([1, 1])

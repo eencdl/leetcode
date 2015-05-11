@@ -13,11 +13,22 @@ For example, in array [1, 2, 3, 1], 3 is a peak element and your function should
 class Solution:
     # @param nums, an integer[]
     # @return an integer
+    # remember both ends are -inf
     def findPeakElement(self, nums):
-        pslope = False
-        for i in range(1, len(nums)):
-            d = nums[i] - nums[i-1]
-            if d > 0:
-                pslope = True
-            if pslope and d < 0:
-                return i-1
+        if len(nums) == 0:
+            return -1
+        return self.helper(nums, 0, len(nums)-1)
+
+    def helper(self, nums, s, e):
+        if s == e:
+            return s
+
+        if (e-s) == 1:
+            return [s, e][nums[s] < nums[e]]
+
+        mid = (s+e)/2
+        #upslope
+        if nums[mid] > nums[mid-1]:
+            return self.helper(nums, mid, e)
+        else:
+            return self.helper(nums, s, mid)
